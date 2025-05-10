@@ -1,4 +1,4 @@
-package nibirutta.currencyconverter.java.exceptions;
+package nibirutta.currencyconverter.exception;
 
 public class CurrencyNotAvailableException extends RuntimeException {
     public CurrencyNotAvailableException(String message) {
