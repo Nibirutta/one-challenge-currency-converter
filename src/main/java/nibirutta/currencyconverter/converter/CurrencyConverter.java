@@ -29,20 +29,14 @@ public class CurrencyConverter {
         this.validator = new CurrencyValidator(supportedCurrencies);
     }
 
-    public double convertValue(String fromCurrencyCode, String toCurrencyCode, double amount) {
-        try {
-            validator.validateCurrency(fromCurrencyCode);
-            validator.validateCurrency(toCurrencyCode);
+    public double convertValue(String fromCurrencyCode, String toCurrencyCode, double amount) throws CurrencyNotAvailableException {
+        validator.validateCurrency(fromCurrencyCode);
+        validator.validateCurrency(toCurrencyCode);
 
-            JsonObject response = apiClient.fetchData(endpointConversionMethod + fromCurrencyCode + "/" + toCurrencyCode);
-            double conversionRate = response.get(endpointConversionRate).getAsDouble();
+        JsonObject response = apiClient.fetchData(endpointConversionMethod + fromCurrencyCode + "/" + toCurrencyCode);
+        double conversionRate = response.get(endpointConversionRate).getAsDouble();
 
-            return amount * conversionRate;
-        } catch (CurrencyNotAvailableException error) {
-            System.out.println(error.getMessage());
-        }
-
-        return 0;
+        return amount * conversionRate;
     }
 
     private List<Currency> loadSupportedCurrencies() {

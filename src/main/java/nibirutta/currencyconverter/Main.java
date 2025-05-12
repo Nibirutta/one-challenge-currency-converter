@@ -1,21 +1,13 @@
 package nibirutta.currencyconverter;
 
 import nibirutta.currencyconverter.converter.CurrencyConverter;
-import nibirutta.currencyconverter.model.Currency;
+import nibirutta.currencyconverter.ui.ConverterUI;
 
 public class Main {
     public static void main(String[] args) {
         CurrencyConverter converter = new CurrencyConverter();
+        ConverterUI converterUI = new ConverterUI(converter);
 
-        try {
-            for ( Currency currency : converter.getSupportedCurrencies() ) {
-                System.out.println(currency);
-            }
-
-            double value = converter.convertValue("EUR", "BRL", 40);
-            System.out.println(String.format("%.2f", value));
-        } catch(Exception error) {
-            System.out.println(error.getMessage());
-        }
+        converterUI.StartUserInteraction();
     }
 }
