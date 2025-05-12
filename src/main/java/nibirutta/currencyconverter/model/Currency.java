@@ -1,8 +1,8 @@
 package nibirutta.currencyconverter.model;
 
 public class Currency implements Comparable<Currency> {
-    private String currencyCode;
-    private String currencyName;
+    private final String currencyCode;
+    private final String currencyName;
 
     public Currency(String currencyCode, String currencyName) {
         this.currencyCode = currencyCode;
